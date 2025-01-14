@@ -8,4 +8,9 @@ bus = SMBus(channel)
 
 bme280 = BME280(i2c_dev=bus)
 
-bme280.get_temperature()
+
+def get_sensor():
+    temperature = bme280.get_temperature()
+    pressure = bme280.get_pressure()
+
+    return {"temperature": temperature, "pressure": pressure}

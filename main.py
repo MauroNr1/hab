@@ -1,5 +1,6 @@
 # Mauro Moureau, 2025
 
 import module.log as log
+import module.sensor as sensor
 
-log.create({"temp": 25, "pressure": 2})
+log.create(sensor.get_sensor())
