@@ -1,3 +1,5 @@
+# Mauro Moureau, 2025
+
 import os
 import time
 import json
