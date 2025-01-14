@@ -5,7 +5,7 @@ import time
 import json
 
 
-def create(content):
+def create(content = "Empty log"):
     os.makedirs("logs", exist_ok=True)
 
     secs = time.time()
