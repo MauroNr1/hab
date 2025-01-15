@@ -1,21 +1,35 @@
 # Mauro Moureau, 2025
 
 import os
+import csv
 import time
-import json
+
+LOG_DIR = "logs"
+os.makedirs(LOG_DIR, exist_ok=True)
+
+FIELDNAMES = ['timestamp', 'key', 'value']
+
+def create(log_name="flight.csv"):
+    log_path = os.path.join(LOG_DIR, log_name)
+
+    if not os.path.exists(log_path):
+        with open(log_path, mode="w", newline="") as f:
+            writer = csv.DictWriter(f, fieldnames=FIELDNAMES)
+            writer.writeheader()
+    else:
+        print(f'Log {log_name} already exists')
+
+    return log_path
 
 
-def generate_path_name(date: time.struct_time):
-    return f"logs/log_{date.tm_year}-{date.tm_mon}-{date.tm_mday}_{date.tm_hour}-{date.tm_min}-{date.tm_sec}.json"
+def write(log_path, data: dict):
+    if not os.path.exists(log_path):
+        return print(f'Log {log_path} does not exist')
+    
+    now = time.time()
 
-
-def create(content="Empty log"):
-    os.makedirs("logs", exist_ok=True)
-
-    secs = time.time()
-    date = time.gmtime(secs)
-
-    name = generate_path_name(date)
-
-    with open(name, "w") as f:
-        f.write(json.dumps({"time": secs, "content": content}))
+    with open(log_path, mode='a', newline='') as f:
+        writer = csv.writer(f)
+        
+        for key, value in data.items():
+            writer.writerow([now, key, value])
