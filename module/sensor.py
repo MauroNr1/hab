@@ -1,17 +1,10 @@
 # Mauro Moureau, 2025
 
-from smbus2 import SMBus
-from bme280 import BME280 # Toch mss BME688 kiezen (gas)?
+import bme680
 
-channel = 1
-bus = SMBus(channel)
+try:
+    sensor = bme680.BME680(bme680.I2C_ADDR_PRIMARY)
+except (RuntimeError, IOError):
+    sensor = bme680.BME680(bme680.I2C_ADDR_SECONDARY)
 
-bme280 = BME280(i2c_dev=bus)
-
-
-def get_sensor():
-    temperature = bme280.get_temperature()
-    pressure = bme280.get_pressure()
-    humidity = bme280.get_humidity()
-
-    return {"temperature": temperature, "pressure": pressure, "humidity": humidity}
+## To Do
