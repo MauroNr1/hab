@@ -12,5 +12,6 @@ bme280 = BME280(i2c_dev=bus)
 def get_sensor():
     temperature = bme280.get_temperature()
     pressure = bme280.get_pressure()
+    humidity = bme280.get_humidity()
 
-    return {"temperature": temperature, "pressure": pressure}
+    return {"temperature": temperature, "pressure": pressure, "humidity": humidity}
