@@ -1,7 +1,7 @@
 # Mauro Moureau, 2025
 
 from smbus2 import SMBus
-from bme280 import BME280
+from bme280 import BME280 # Toch mss BME688 kiezen (gas)?
 
 channel = 1
 bus = SMBus(channel)
