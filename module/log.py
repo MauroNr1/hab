@@ -8,11 +8,16 @@ LOG_DIR = "logs"
 os.makedirs(LOG_DIR, exist_ok=True)
 
 class Logger:
-    def __init__(self, log_name):
-        log_path = os.path.join(LOG_DIR, log_name)
+    def __init__(self, log_name="flight.csv", headers=None):
+        self.path = os.path.join(LOG_DIR, log_name)
+        self.headers = headers
 
-        if not os.path.exists(log_path):
-            with open(file=log_path, mode="w", newline="") as f:
+        if not os.path.exists(self.path):
+            with open(file=self.path, mode="a", newline="") as f:
                 writer = csv.writer(f)
-        else:
-            raise FileExistsError
+                writer.writerow(self.headers)
+
+    def log(self, row):
+        with open(file=self.path, mode="a", newline="") as f:
+            writer = csv.writer(f)
+            writer.writerow(row)
