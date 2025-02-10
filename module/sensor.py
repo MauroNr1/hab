@@ -9,6 +9,6 @@ except (RuntimeError, IOError):
 
 def get():
     if sensor.get_sensor_data():
-        return {"temperature": sensor.data.temperature}
+        return sensor.data
 
     return None

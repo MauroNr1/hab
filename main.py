@@ -12,7 +12,7 @@ try:
         date = time.time()
 
         result = sensor.get()
-        print(result["temperature"])
+        print(f"Temp: {result.temperature}, Hum: {result.humidity}, Pres: {result.pressure}")
 
         time.sleep(1)
 except KeyboardInterrupt:
