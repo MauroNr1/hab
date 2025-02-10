@@ -14,6 +14,6 @@ try:
         result = sensor.get()
         print(result["temperature"])
 
-        time.sleep(10)
+        time.sleep(1)
 except KeyboardInterrupt:
     print("Ended logging.")
