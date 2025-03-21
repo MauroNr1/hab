@@ -9,6 +9,8 @@ os.makedirs(LOG_DIR, exist_ok=True)
 
 class Logger:
     def __init__(self, log_name="flight.csv", headers=[]):
+        headers.insert(0, time.time())
+
         self.path = os.path.join(LOG_DIR, log_name)
         self.headers = headers
 
@@ -17,7 +19,9 @@ class Logger:
                 writer = csv.writer(f)
                 writer.writerow(self.headers)
 
-    def log(self, row):
+    def log(self, row: list):
+        row.insert(0, time.time())
+
         with open(file=self.path, mode="a", newline="") as f:
             writer = csv.writer(f)
             writer.writerow(row)
