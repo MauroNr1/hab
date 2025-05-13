@@ -31,9 +31,9 @@ try:
             next_time = now
 
         if next_pic >= 3:
-            threading.Thread(target=pic, args=(next_time) daemon=True).start()
+            threading.Thread(target=pic, args=(next_time), daemon=True).start()
 
-        threading.Thread(target=log, args=(next_time) daemon=True).start()
+        threading.Thread(target=log, args=(next_time), daemon=True).start()
         next_time += 10
         next_pic += 1
 except KeyboardInterrupt:
