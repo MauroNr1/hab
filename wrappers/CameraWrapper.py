@@ -1,7 +1,7 @@
 import os
 import time
 
-from picamera2 import Picamera2
+from picamera2 import Picamera2 # type: ignore
 
 PIC_DIR = "pics"
 os.makedirs(PIC_DIR, exist_ok=True)
