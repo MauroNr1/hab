@@ -20,7 +20,7 @@ def pic(now):
     camera.get(f"img_{now}.jpg")
 
 next_time = time.time()
-next_pic = 3
+next_pic = time.time()
 
 try:
     while True:
@@ -30,11 +30,11 @@ try:
         else:
             next_time = now
 
-        if next_pic >= 3:
-            threading.Thread(target=pic, args=(next_time), daemon=True).start()
+        if now >= next_pic:
+            threading.Thread(target=pic, args=[next_time], daemon=True).start()
+            next_pic += 30
 
-        threading.Thread(target=log, args=(next_time), daemon=True).start()
+        threading.Thread(target=log, args=[next_time], daemon=True).start()
         next_time += 10
-        next_pic += 1
 except KeyboardInterrupt:
     pass
